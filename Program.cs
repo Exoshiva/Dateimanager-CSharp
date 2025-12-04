@@ -23,8 +23,9 @@ namespace Dateimanager1
                 // Hier werden die Wrapper (Hilfs-Methoden) für Polybius und PQC aufgerufen
                 {"5", () => PolybiusWrapper()},
                 {"6", () => PqcWrapper()},
+                {"7", () => QuestionaireWrapper()}, // Startet das neue Fragebogen-Menü
                 // Hier wird das Programm beendet
-                {"7", () => programmLauft = false}
+                {"8", () => programmLauft = false}
             };
 
             // Beginn der Hauptschleife
@@ -38,7 +39,8 @@ namespace Dateimanager1
                 Console.WriteLine("4 - Entschlüsseln (Aufgabe 3)");
                 Console.WriteLine("5 - Polybius Verschlüsselung (Aufgabe 4)");
                 Console.WriteLine("6 - Datei mit PQC verschlüsseln (Bonusaufgabe)"); 
-                Console.WriteLine("7 - Beenden"); 
+                Console.WriteLine("7 - Fragebogen Menü (Fragebogen (Psychologisches Institut)");
+                Console.WriteLine("8 - Beenden"); 
                 Console.Write("Auswahl: ");
 
                 string wahl = Console.ReadLine() ?? "";
@@ -108,7 +110,6 @@ namespace Dateimanager1
             {
                 Console.WriteLine("Ungültige Auswahl.");
             }
-
         }
 
         // TEIL 2: Die Methoden des Programms
@@ -118,6 +119,13 @@ namespace Dateimanager1
         {
             Console.WriteLine("\nDrücken Sie eine Taste, um fortzufahren...");
             Console.ReadLine();
+        }
+        
+        // Wrapper-Methode für das Fragebogen-Menü (Neu hinzugefügt)
+        static void QuestionaireWrapper()
+        {
+            Questionaire q = new Questionaire();
+            q.StartMenue();
         }
         
     }
