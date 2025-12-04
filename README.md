@@ -15,7 +15,7 @@ Das Programm vereint verschiedene Werkzeuge in einer zentralen Steuerung:
 * **Textdatei lesen:** Liest beliebige Textdateien ein und gibt sie in der Konsole aus.
 * **Datei kopieren:** Kopiert Dateien Byte-für-Byte (auch Binärdateien).
 
-### 🛡️ Sicherheit & Kryptographie
+### Sicherheit & Kryptographie
 
 * **AES Verschlüsselung:** Symmetrische Verschlüsselung von Texten und Dateien (mit "Müll-Zeichen" Obfuskation).
 * **Polybius-Chiffre:** Klassische Verschlüsselung basierend auf einem Matrix-Quadrat und einem Schlüsselwort.
