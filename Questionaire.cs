@@ -215,7 +215,28 @@ namespace Dateimanager1
         }
         private void ZeigeStatistik()
         {
-            // Noch nicht implementiert
+            Console.Clear();
+            Console.WriteLine("****** AUSWERTUNG **********");
+            
+            if (alleErgebnisse.Count == 0)
+            {
+                Console.WriteLine("Noch keine Versuche durchgeführt.");
+            }
+            else
+            {
+                Console.WriteLine($"Anzahl der Probanden: {alleErgebnisse.Count}");
+                
+                // Hier baue ich später die detaillierte Statistik aus der PDF ein.
+                // Für jetzt zeigen ich eine einfache Übersicht:
+                foreach(var p in alleErgebnisse)
+                {
+                    Console.WriteLine($"Proband {p.ProbandenID}: {p.AnzahlKorrekteAntworten} von 5 richtig.");
+                }
+            }
+            
+            Console.WriteLine("\nDrücken Sie Enter...");
+            Console.ReadLine();
         }
+
     }
 }
