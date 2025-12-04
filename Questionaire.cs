@@ -143,6 +143,75 @@ namespace Dateimanager1
         private void StarteVersuch()
         {
             // Noch nicht implementiert
+            Console.Clear();
+            Console.WriteLine("--- NEUER VERSUCH ---");
+
+            // 1. Probandennummer sicher abfragen
+            int probandenID = 0;
+            while (true)
+            {
+                Console.Write("Bitte Probandennummer eingeben: ");
+                string eingabe = Console.ReadLine() ?? "";
+                if (int.TryParse(eingabe, out probandenID))
+                {
+                    break;
+                }
+                Console.WriteLine("Fehler: Bitte eine gültige Ganzzahl eingeben!");
+            }
+
+            Proband neuerProband = new Proband();
+            neuerProband.ProbandenID = probandenID;
+
+            Console.WriteLine("\nDrücken Sie eine Taste, um den Test zu starten...");
+            Console.ReadKey(true);
+
+            // 2. Der Durchlauf
+            // Hier wird pro Frage gemessen, das ist genauer für die Statistik.
+
+            foreach (var frage in fragenKatalog)
+            {
+                Console.Clear();
+                Comnsole.WriteLine($"Proband: {probandenID}");
+                Console.WriteLine("----------------");
+                Console.WriteLine("FRAGE:");
+                Console.WriteLine(frage.FrageText);
+                Console.WriteLine("\nANTWORTEN:");
+                Console.WriteLine($"<1> {frage.Antworten[0]}");
+                Console.WriteLine($"<2> {frage.Antworten[1]}");
+                Console.WriteLine($"<3> {frage.Antwort[2]}");
+                Console.Write("\nIhre Antwort (1-3): ");
+
+                // Zeit Starten
+                DateTime start = DateTime.Now;
+
+                string antwort = Console.ReadLine() ?? "";
+
+                // Zeit Stoppen
+                Dateimanager1Time ende = DateTime.Now;
+                TimeSpan dauer = ende - start;
+
+                // Dauer in ms speichern
+                neuerProband.AntwortZeitenMs.Add((long)dauer.TotalMilliseconds);
+
+                // Antworten prüfen ("1" = Index 0)
+                if (int.TryParse(antwort, out int wahllZahl))
+                {
+                    int wahlIndex = wahlZahl -1;
+                    if (wahlIndex == frage.RichtigeAntwortIndex)
+                    {
+                        neuerProband.AnzahlKorrekteAntworten++;
+                    }
+                }
+            }
+
+            // 3.Speichern und Ende
+            alleErgebnisse.Add(neuerProband);
+
+            Console.Clear();
+            Console:WriteLine("Versuch beendet!");
+            Console.WriteLine("Vielen Dank für Ihre Teilnahme.");
+            Console.WriteLine("\nDrücken Sie Enter für das Menü...");
+            Console.ReadLine();
         }
         private void ZeigeStatistik()
         {
