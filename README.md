@@ -1,12 +1,12 @@
 # C# Dateimanager & Krypto-Tool
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
 ![Status](https://img.shields.io/badge/status-stable-success.svg)
 ![Language](https://img.shields.io/badge/language-C%23-purple.svg)
 
 Eine modulare Konsolenanwendung für Dateioperrationen und kryptographische Verfahren, entwickelt im Rahmen der FIAE-Umschulung.
 
-![Screenshot des Hauptmenüs](./img/main_menu.png)
+![Screenshot des Hauptmenüs](./img/manager.png)
 
 ## Features
 
@@ -19,14 +19,14 @@ Das Programm vereint verschiedene Werkzeuge in einer zentralen Steuerung:
 
 ### Sicherheit & Kryptographie
 
-* **AES Verschlüsselung:** Symmetrische Verschlüsselung von Texten und Dateien (mit "Müll-Zeichen" Obfuskation).
+* **AES Verschlüsselung:** Symmetrische Verschlüsselung von Texten und Dateien (mit "Müll-Zeichen").
 * **Polybius-Chiffre:** Klassische Verschlüsselung basierend auf einem Matrix-Quadrat und einem Schlüsselwort.
   
-  ![Beispiel der Polybius Matrix](./img/polybius_demo.png)
+  ![Beispiel der Polybius Matrix](./img/krypto.png)
 
 * **PQC Simulation:** Eine Simulation von **Post-Quantum Cryptography** (Kyber-Verfahren), die ein hybrides System (AES + PQC Kapselung) demonstriert.
 
-  ![PQC Simulation Ablauf](./img/pqc_simulation.png)
+  ![PQC Simulation Ablauf](./img/fragebogen.png)
 
 ## Installation & Start
 
@@ -58,6 +58,7 @@ Voraussetzung: [.NET SDK 9.0 oder höher](https://dotnet.microsoft.com/download)
 
 ## Versionshistorie
 
+* **v1.0.1** - Dokumentation erweitert: Screenshots und Diagramme zur README hinzugefügt.
 * **v1.0.0** - Initialer Release. Refactoring des Hauptmenüs auf Dictionary-Logik und Implementierung aller Basis-Algorithmen.
 
 Erstellt von Dev (Exoshiva) | 2025
