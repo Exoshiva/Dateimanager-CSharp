@@ -6,6 +6,8 @@
 
 Eine modulare Konsolenanwendung für Dateioperrationen und kryptographische Verfahren, entwickelt im Rahmen der FIAE-Umschulung.
 
+![Screenshot des Hauptmenüs](./img/main_menu.png)
+
 ## Features
 
 Das Programm vereint verschiedene Werkzeuge in einer zentralen Steuerung:
@@ -19,7 +21,12 @@ Das Programm vereint verschiedene Werkzeuge in einer zentralen Steuerung:
 
 * **AES Verschlüsselung:** Symmetrische Verschlüsselung von Texten und Dateien (mit "Müll-Zeichen" Obfuskation).
 * **Polybius-Chiffre:** Klassische Verschlüsselung basierend auf einem Matrix-Quadrat und einem Schlüsselwort.
+  
+  ![Beispiel der Polybius Matrix](./img/polybius_demo.png)
+
 * **PQC Simulation:** Eine Simulation von **Post-Quantum Cryptography** (Kyber-Verfahren), die ein hybrides System (AES + PQC Kapselung) demonstriert.
+
+  ![PQC Simulation Ablauf](./img/pqc_simulation.png)
 
 ## Installation & Start
 
@@ -47,7 +54,7 @@ Voraussetzung: [.NET SDK 9.0 oder höher](https://dotnet.microsoft.com/download)
 
 * **Sprache:** C# (.NET 10.0 / 9.0 kompatibel)
 * **Architektur:** Modularer Aufbau mit `Separation of Concerns` (ausgelagerte Klassen).
-* **Tools:** Visual Studio Code, GitLens.
+* **Tools:** Visual Studio Code, Git, GitHub, GitLens.
 
 ## Versionshistorie
 
