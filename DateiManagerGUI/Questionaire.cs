@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text; // Neu für StringBuilder (Statistik)
+using Dateimanager1;
 
 /*
     Dies ist die Datei Questionaire.cs, die das Fragebogen-Menü implementiert.

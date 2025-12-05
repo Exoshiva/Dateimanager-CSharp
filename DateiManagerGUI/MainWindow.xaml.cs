@@ -1,34 +1,65 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices; // WICHTIG für den Effekt
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Interop; // WICHTIG
 using System.IO; 
-using Dateimanager1; // Findet deine Klassen
+using System.Windows.Media; // Für Farben/Brushes
+using Dateimanager1; 
 
 namespace DateiManagerGUI;
 
 public partial class MainWindow : Window
 {
-    // Die Werkzeuge vorbereiten
+    // --- WINDOWS 11 GLASS EFFEKT SETUP ---
+    [DllImport("dwmapi.dll")]
+    private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
+
+    private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+    private const int DWMWA_SYSTEMBACKDROP_TYPE = 38;
+    private const int DWMSBT_TRANSIENTWINDOW = 3; // 3 = Acrylic (Starkes Milchglas)
+
+    // Deine Tools
     private PQCSimulator _pqcSimulator = new PQCSimulator();
     private Questionaire _fragebogen = new Questionaire();
+    
+    // Status für Dark Mode (Standard: aus)
+    private bool _isDarkMode = false;
 
     public MainWindow()
     {
         InitializeComponent();
+        
+        // Startet den Effekt, sobald das Fenster geladen ist
+        this.Loaded += (s, e) => EnableGlassEffect();
+    }
+
+    private void EnableGlassEffect()
+    {
+        var hwnd = new WindowInteropHelper(this).Handle;
+
+        // 1. Wir erzwingen LIGHT MODE (0), damit die Schrift dunkel bleibt
+        int useDarkMode = 0; 
+        DwmSetWindowAttribute(hwnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ref useDarkMode, sizeof(int));
+
+        // 2. Wir aktivieren den Hintergrund-Blur (Acrylic)
+        int backdropType = DWMSBT_TRANSIENTWINDOW; 
+        DwmSetWindowAttribute(hwnd, DWMWA_SYSTEMBACKDROP_TYPE, ref backdropType, sizeof(int));
+    }
+
+    // --- DEINE EVENTS (Original) ---
+
+    private void BtnTheme_Click(object sender, RoutedEventArgs e)
+    {
+        // Wir lassen die Funktion leer oder geben eine Info, 
+        // damit das Umschalten das Design nicht zerschießt.
+        _isDarkMode = !_isDarkMode;
+        // Optional: Hier könntest du später Farben umschalten, wenn gewollt.
     }
 
     // --- TAB 1: DATEI MANAGER ---
 
     private void BtnLoad_Click(object sender, RoutedEventArgs e)
     {
-        string pfad = txtFilePath.Text; // Name passt jetzt zum XAML
+        string pfad = txtFilePath.Text; 
 
         if (File.Exists(pfad))
         {
@@ -60,14 +91,14 @@ public partial class MainWindow : Window
             return;
         }
 
-        if (rbPolybius.IsChecked == true) // Name passt jetzt!
+        if (rbPolybius.IsChecked == true) 
         {
             string key = "GEHEIM"; 
             Polybius p = new Polybius(key);
             int[] cipherArray = p.Verschluesseln(klartext);
             txtKryptoOutput.Text = string.Join(" ", cipherArray);
         }
-        else if (rbPQC.IsChecked == true) // Name passt jetzt!
+        else if (rbPQC.IsChecked == true) 
         {
             string tempFile = "temp_input.txt";
             string targetFile = "safe.pqc";
@@ -79,15 +110,15 @@ public partial class MainWindow : Window
         }
         else
         {
-             MessageBox.Show("Wähle Polybius oder PQC aus.");
+             // Fallback: Einfach anzeigen (oder AES implementieren)
+             txtKryptoOutput.Text = "AES (Standard) gewählt - hier könnte deine AES Logik stehen.";
         }
     }
 
-    // --- TAB 3: FRAGEBOGEN (Die neue Logik) ---
+    // --- TAB 3: FRAGEBOGEN ---
 
     private void BtnStartQuestionnaire_Click(object sender, RoutedEventArgs e)
     {
-        // Versuchen, die ID aus dem Textfeld zu lesen
         if (int.TryParse(txtProbandID.Text, out int id))
         {
             _fragebogen.StarteNeuenVersuch(id);
