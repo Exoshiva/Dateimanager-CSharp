@@ -4,7 +4,7 @@
 ![Status](https://img.shields.io/badge/status-stable-success.svg)
 ![Language](https://img.shields.io/badge/language-C%23-purple.svg)
 
-Eine modulare Konsolenanwendung für Dateioperrationen und kryptographische Verfahren, entwickelt im Rahmen der FIAE-Umschulung.
+Eine modulare Desktop Anwendung für Dateioperrationen und kryptographische Verfahren, entwickelt im Rahmen der FIAE-Umschulung.
 
 ![Screenshot des Hauptmenüs](./img/manager.png)
 
