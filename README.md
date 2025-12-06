@@ -58,7 +58,7 @@ Voraussetzung: [.NET SDK 9.0 oder höher](https://dotnet.microsoft.com/download)
 
 ## Versionshistorie
 
-* **v1.0.1** - Dokumentation erweitert: Screenshots und Diagramme zur README hinzugefügt.
+* **v1.0.1** - Dokumentation erweitert: Screenshots zur README hinzugefügt.
 * **v1.0.0** - Initialer Release. Refactoring des Hauptmenüs auf Dictionary-Logik und Implementierung aller Basis-Algorithmen.
 
 Erstellt von Dev (Exoshiva) | 2025
